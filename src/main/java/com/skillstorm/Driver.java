@@ -10,6 +10,10 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		AdministratorDAO dao = new AdministrationImpl();
+		Administrator admin =  new Administrator();
+		admin.setFirstName("Jose");
+		admin.setLastName("Rodriguez");
+		dao.create(admin);
 		List<Administrator> admins = dao.findAll();
 		System.out.println(admins);
 	}

@@ -2,6 +2,7 @@ package com.skillstorm.doas;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,6 +16,28 @@ public class AdministrationImpl implements AdministratorDAO {
 
 	@Override
 	public Administrator create(Administrator administrator) {
+		String sql = "Insert Into administrator(first_name,last_name) Values (?,?)";
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, administrator.getFirstName());
+			stmt.setString(2, administrator.getLastName());
+			int rowsAffected = stmt.executeUpdate();
+			if(rowsAffected != 0) {
+				ResultSet keys = stmt.getGeneratedKeys();
+				if(keys.next()) {
+					int key = keys.getInt(1);
+					Administrator newAdmin = new Administrator();
+					newAdmin.setId(key);
+					newAdmin.setFirstName(administrator.getFirstName());
+					newAdmin.setLastName(administrator.getLastName());
+					return newAdmin;
+				}
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 		
 		return null;
 	}
