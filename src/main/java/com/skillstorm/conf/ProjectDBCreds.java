@@ -28,11 +28,13 @@ public class ProjectDBCreds {
 					.getResourceAsStream("application.properties")) {
 				// properties object
 				Properties props = new Properties();
-				props.load(input); // Load in the file we opened 
+				props.load(input); 
+				// Load in the file we opened 
 				// grab the keys i want
 				this.url = props.getProperty("db.url");
 				this.username = props.getProperty("db.username");
-				this.password = props.getProperty("db.passsword");
+				this.password = props.getProperty("db.password");
+				
 
 			}
 			catch(IOException e) {
@@ -48,7 +50,6 @@ public class ProjectDBCreds {
 	 * Creates and returns a connection to the database
 	 * @return an object with url, username, password  for the project database
 	 */
-	
 	public static ProjectDBCreds getInstance() {
 		if(instance == null) instance = new ProjectDBCreds();
 		return instance;
@@ -69,6 +70,4 @@ public class ProjectDBCreds {
 	public Connection getConnection() throws SQLException{
 		return DriverManager.getConnection(url,username,password);
 	}
-	
-	
 }
