@@ -105,13 +105,39 @@ public class WarehouseImpl implements WarehouseDAO {
 
 	@Override
 	public void update(Warehouse warehouse) {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE warehouse "
+				+ "SET name = ?, item_capacity = ?, company_id = ?, "
+				+ "number_of_employees = ?,  administrator_id = ? "
+				+ "WHERE warehouse_id = ?";
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, warehouse.getName());
+			stmt.setInt(2, warehouse.getCapacity());
+			stmt.setInt(3, warehouse.getCompanyId());
+			stmt.setInt(4, warehouse.getNumOfEmployees());
+			stmt.setInt(5, warehouse.getAdministratorId());
+			stmt.setInt(6, warehouse.getId());
+			stmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void deleteById(int id) {
-		// TODO Auto-generated method stub
+		String sql = "Delete From warehouse Where warehouse_id = ?";
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 	
