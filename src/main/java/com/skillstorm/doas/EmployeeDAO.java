@@ -8,11 +8,14 @@ public interface EmployeeDAO {
 	// create employee
 	public Employee create(Employee employee);
 	
+	// find all
+	public  List<Employee> findAll();
+	
 	// find by first name
-	public Employee findByFirstName(String firstName);
+	public List<Employee> findByFirstName(String firstName);
 	
 	// find by last name
-	public Employee findByLastName(String lastName);
+	public List<Employee> findByLastName(String lastName);
 
 	// find by id
 	public Employee findByid(int employeeId);
