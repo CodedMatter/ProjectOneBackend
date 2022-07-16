@@ -1,10 +1,15 @@
 package com.skillstorm.doas;
 
+import java.util.List;
+
 import com.skillstorm.models.Company;
 
 public interface CompanyDAO {
 	// create 
 	public Company create (Company company);
+	
+	//find all
+	public List<Company> findAll();
 	
 	// find by id
 	public Company findById(int id);

@@ -6,7 +6,16 @@ public class Warehouse {
 	private int capacity;
 	private int companyId;
 	private int numOfEmployees;
+	private int administratorId;
 	
+	public int getAdministratorId() {
+		return administratorId;
+	}
+
+	public void setAdministratorId(int administratorId) {
+		this.administratorId = administratorId;
+	}
+
 	public Warehouse() {
 		
 	}
@@ -54,8 +63,10 @@ public class Warehouse {
 	@Override
 	public String toString() {
 		return "Warehouse [id=" + id + ", name=" + name + ", capacity=" + capacity + ", companyId=" + companyId
-				+ ", numOfEmployees=" + numOfEmployees + "]";
+				+ ", numOfEmployees=" + numOfEmployees + ", administratorId=" + administratorId + "]";
 	}
+
+	
 	
 	
 }

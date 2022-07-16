@@ -44,13 +44,36 @@ public class AdministrationImpl implements AdministratorDAO {
 
 	@Override
 	public Administrator update(Administrator administrator) {
-		// TODO Auto-generated method stub
+		String sql = "UPDATE administrator "
+				+ "SET first_name = ?, last_name = ? "
+				+ "WHERE administrator_id = ?";
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, administrator.getFirstName());
+			stmt.setString(2, administrator.getLastName());
+			stmt.setInt(3, administrator.getId());
+			stmt.executeUpdate();
+			return administrator;
+			
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM administrator WHERE administrator_id = ?;";
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
