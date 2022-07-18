@@ -8,15 +8,13 @@ public interface ItemDAO {
 	// create an item
 	public Item create(Item itemToCreate);
 	
+	public List<Item> findAll();
+	
 	//  find item by id
 	public Item findById(int itemId);
 
 	// find item by name
 	public Item findByName(String itemName);
-
-	
-	// find all items in a warehouse
-	public List<Item> findByWarehouseId(int warehouseId);
 	
 	// update item details
 	public Item update(Item itemToUpdate);
