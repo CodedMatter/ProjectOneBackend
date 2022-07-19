@@ -18,7 +18,7 @@ public interface EmployeeDAO {
 	public List<Employee> findByLastName(String lastName);
 
 	// find by id
-	public Employee findByid(int employeeId);
+	public Employee findById(int employeeId);
 
 	// find by warehouse
 	public List<Employee> findByWarehouseId(int warehouseId);

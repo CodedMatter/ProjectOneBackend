@@ -88,9 +88,11 @@ public class AdministratorServelt extends HttpServlet{
 	 */
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		InputStream reqBody = req.getInputStream();
-		Administrator admin = mapper.readValue(reqBody, Administrator.class);
-		dao.delete(admin.getId());
+		String[] paths = req.getPathInfo().split("/");
+
+		if(paths.length > 1) {
+			dao.delete(Integer.parseInt(paths[1]));
+		}
 	}
 
 }

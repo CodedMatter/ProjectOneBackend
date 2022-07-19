@@ -87,7 +87,7 @@ public class EmployeeImpl implements EmployeeDAO {
 	}
 
 	@Override
-	public Employee findByid(int employeeId) {
+	public Employee findById(int employeeId) {
 		String sql = "Select * From employee Where employee_id = ?";
 		
 		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){

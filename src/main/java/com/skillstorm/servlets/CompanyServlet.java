@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.skillstorm.doas.CompanyDAO;
 import com.skillstorm.doas.CompanyImpl;
-import com.skillstorm.models.Administrator;
 import com.skillstorm.models.Company;
 
 @WebServlet(urlPatterns = "/company/*")
@@ -92,9 +91,11 @@ public class CompanyServlet extends HttpServlet{
 	 */
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		InputStream reqBody = req.getInputStream();
-		Company company = mapper.readValue(reqBody, Company.class);
-		dao.delete(company.getId());
+		String[] paths = req.getPathInfo().split("/");
+
+		if(paths.length > 1) {
+			dao.delete(Integer.parseInt(paths[1]));
+		}
 	}
 
 }
