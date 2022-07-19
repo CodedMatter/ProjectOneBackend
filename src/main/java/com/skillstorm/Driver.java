@@ -13,13 +13,6 @@ import com.skillstorm.models.LoginProfile;
 public class Driver {
 	
 	public static void main(String[] args) {
-		LoginProfileDAO dao = new LoginImpl();
-		LoginProfile profile = new LoginProfile();
-		profile.setAdministratorId(1);
-		profile.setUsername("admin");
-		profile.setPassword("pass");
-		System.out.println(dao.create(profile));
-		System.out.println(dao.get("admin","pass"));
 		
 	}
 }
