@@ -63,7 +63,7 @@ public class AdministratorServelt extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InputStream reqBody = req.getInputStream();
 		Administrator admin = mapper.readValue(reqBody, Administrator.class);
-		dao.create(admin);
+		admin = dao.create(admin);
 		resp.setContentType("application/json");
 		resp.getWriter().print(mapper.writeValueAsString(admin));
 	}
@@ -77,7 +77,7 @@ public class AdministratorServelt extends HttpServlet{
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		InputStream reqBody = req.getInputStream();
 		Administrator admin = mapper.readValue(reqBody, Administrator.class);
-		dao.update(admin);
+		admin = dao.update(admin);
 		resp.setContentType("application/json");
 		resp.getWriter().print(mapper.writeValueAsString(admin));
 	}

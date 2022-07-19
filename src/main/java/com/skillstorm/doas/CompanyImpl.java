@@ -40,6 +40,25 @@ public class CompanyImpl implements CompanyDAO {
 		}
 		return null;
 	}
+	
+	@Override
+	public List<Company> findAll() {
+		LinkedList<Company> companies = new LinkedList<>();
+		String sql = "Select * From company";
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			Statement stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+			while(result.next()) {
+				companies.add(mapResultSet(result));
+			}
+			return companies;
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@Override
 	public Company findById(int id) {
@@ -117,23 +136,5 @@ public class CompanyImpl implements CompanyDAO {
 		return company;
 	}
 
-	@Override
-	public List<Company> findAll() {
-		LinkedList<Company> companies = new LinkedList<>();
-		String sql = "Select * From company";
-		
-		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
-			Statement stmt = conn.createStatement();
-			ResultSet result = stmt.executeQuery(sql);
-			while(result.next()) {
-				companies.add(mapResultSet(result));
-			}
-			return companies;
-		}
-		catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 
 }
