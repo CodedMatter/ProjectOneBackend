@@ -11,6 +11,9 @@ public interface AdministratorDAO {
 	// find all
 	public List<Administrator> findAll();
 	
+	// find by id
+	public Administrator findById(int id);
+	
 	// update
 	public Administrator update(Administrator administrator);
 	

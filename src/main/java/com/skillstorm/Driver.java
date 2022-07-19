@@ -17,7 +17,7 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		AdministratorDAO dao = new AdministratorImpl();
-		System.out.println(dao.findAll());
+		System.out.println(dao.findById(7));
 		
 	}
 }

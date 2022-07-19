@@ -117,4 +117,20 @@ public class AdministratorImpl implements AdministratorDAO {
 		
 	}
 
+	@Override
+	public Administrator findById(int id) {
+		String sql = "Select * From administrator Where administrator_id = " + id;
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			Statement stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+			if(result.next()) {
+				return mapResultSet(result);
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
