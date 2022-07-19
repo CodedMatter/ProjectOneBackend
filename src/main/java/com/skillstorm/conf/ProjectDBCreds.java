@@ -28,13 +28,18 @@ public class ProjectDBCreds {
 					.getResourceAsStream("application.properties")) {
 				// properties object
 				Properties props = new Properties();
-				props.load(input); 
-				// Load in the file we opened 
-				// grab the keys i want
-				this.url = props.getProperty("db.url");
-				this.username = props.getProperty("db.username");
-				this.password = props.getProperty("db.password");
 				
+//				props.load(input); 
+//				// Load in the file we opened 
+//				// grab the keys i want
+//				this.url = props.getProperty("db.url");
+//				this.username = props.getProperty("db.username");
+//				this.password = props.getProperty("db.password");
+				
+				// there a bug above, it cant find the file. added the variables manually for now
+				this.url = "jdbc:mysql://localhost:3306/project1";
+				this.username = "root";
+				this.password = "Coded4Matter";
 
 			}
 			catch(IOException e) {
