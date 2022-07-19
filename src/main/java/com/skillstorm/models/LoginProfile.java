@@ -1,20 +1,12 @@
 package com.skillstorm.models;
 
 public class LoginProfile {
-	private int id;
+	private int administratorId;
 	private String username;
 	private String password;
-	private int administratorId;
 	
 	public LoginProfile() {
 		
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public String getUsername() {
 		return username;
@@ -34,13 +26,11 @@ public class LoginProfile {
 	public void setAdministratorId(int administratorId) {
 		this.administratorId = administratorId;
 	}
-
 	@Override
 	public String toString() {
-		return "LoginProfile [id=" + id + ", username=" + username + ", password=" + password + ", administratorId="
-				+ administratorId + "]";
+		return "LoginProfile [administratorId=" + administratorId + ", username=" + username + ", password=" + password
+				+ "]";
 	}
-	
-	
+
 	
 }

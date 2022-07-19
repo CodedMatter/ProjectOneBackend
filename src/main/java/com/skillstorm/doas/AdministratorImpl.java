@@ -12,7 +12,7 @@ import java.util.List;
 import com.skillstorm.conf.ProjectDBCreds;
 import com.skillstorm.models.Administrator;
 
-public class AdministrationImpl implements AdministratorDAO {
+public class AdministratorImpl implements AdministratorDAO {
 
 	@Override
 	public Administrator create(Administrator administrator) {
