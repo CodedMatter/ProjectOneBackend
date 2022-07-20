@@ -14,7 +14,7 @@ public interface ItemDAO {
 	public Item findById(int itemId);
 
 	// find item by name
-	public Item findByName(String itemName);
+	public List<Item> findByName(String itemName);
 	
 	// update item details
 	public Item update(Item itemToUpdate);

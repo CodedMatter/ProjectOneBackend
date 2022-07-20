@@ -58,16 +58,18 @@ public class ItemImpl implements ItemDAO {
 	}
 
 	@Override
-	public Item findByName(String itemName) {
-		String sql = "Select * From item Where name = ?";
+	public List<Item> findByName(String itemName) {
+		LinkedList<Item> items = new LinkedList<>();
+		String sql = "Select * From item Where name Like ?";
 		
 		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, itemName);
+			stmt.setString(1, "%"+itemName+"%");
 			ResultSet result = stmt.executeQuery();
-			if(result.next()) {
-				return mapResultSet(result);
+			while(result.next()) {
+				items.add(mapResultSet(result));
 			}
+			return items;
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
