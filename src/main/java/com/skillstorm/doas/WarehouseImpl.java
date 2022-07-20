@@ -104,7 +104,7 @@ public class WarehouseImpl implements WarehouseDAO {
 	}
 
 	@Override
-	public void update(Warehouse warehouse) {
+	public Warehouse update(Warehouse warehouse) {
 		String sql = "UPDATE warehouse "
 				+ "SET name = ?, item_capacity = ?, company_id = ?, "
 				+ "number_of_employees = ?,  administrator_id = ? "
@@ -119,15 +119,17 @@ public class WarehouseImpl implements WarehouseDAO {
 			stmt.setInt(5, warehouse.getAdministratorId());
 			stmt.setInt(6, warehouse.getId());
 			stmt.executeUpdate();
+			return warehouse;
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
 		}
+		return null;
 
 	}
 
 	@Override
-	public void deleteById(int id) {
+	public void delete(int id) {
 		String sql = "Delete From warehouse Where warehouse_id = ?";
 		
 		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){

@@ -19,10 +19,8 @@ public interface WarehouseDAO {
 	public List<Warehouse> findByAdminId(int id);
 	
 	// update warehouse
-	public void update(Warehouse warehouse);
+	public Warehouse update(Warehouse warehouse);
 	
 	// delete warehouse
-	public void deleteById (int id);
-	
-	
+	public void delete (int id);
 }
