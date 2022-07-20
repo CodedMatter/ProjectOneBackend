@@ -1,11 +1,11 @@
 package com.skillstorm.models;
 
-public class LoginProfile {
+public class Login {
 	private int administratorId;
 	private String username;
 	private String password;
 	
-	public LoginProfile() {
+	public Login() {
 		
 	}
 	public String getUsername() {
@@ -28,7 +28,7 @@ public class LoginProfile {
 	}
 	@Override
 	public String toString() {
-		return "LoginProfile [administratorId=" + administratorId + ", username=" + username + ", password=" + password
+		return "Login [administratorId=" + administratorId + ", username=" + username + ", password=" + password
 				+ "]";
 	}
 

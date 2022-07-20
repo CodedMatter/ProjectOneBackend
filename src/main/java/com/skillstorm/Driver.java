@@ -7,11 +7,11 @@ import com.skillstorm.doas.EmployeeImpl;
 import com.skillstorm.doas.ItemDAO;
 import com.skillstorm.doas.ItemImpl;
 import com.skillstorm.doas.LoginImpl;
-import com.skillstorm.doas.LoginProfileDAO;
+import com.skillstorm.doas.LoginDAO;
 import com.skillstorm.models.Administrator;
 import com.skillstorm.models.Employee;
 import com.skillstorm.models.Item;
-import com.skillstorm.models.LoginProfile;
+import com.skillstorm.models.Login;
 
 public class Driver {
 	

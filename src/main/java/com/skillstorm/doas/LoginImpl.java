@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import com.skillstorm.conf.ProjectDBCreds;
-import com.skillstorm.models.LoginProfile;
+import com.skillstorm.models.Login;
 
-public class LoginImpl implements LoginProfileDAO {
+public class LoginImpl implements LoginDAO {
 
 	@Override
-	public LoginProfile create(LoginProfile loginProfile) {
+	public Login create(Login loginProfile) {
 		String sql = "Insert Into login (username, password, administrator_id) "
 				+ "Values (?, ?, ?)";
 		
@@ -34,7 +34,7 @@ public class LoginImpl implements LoginProfileDAO {
 	}
 
 	@Override
-	public LoginProfile get(String username, String password) {
+	public Login get(String username, String password) {
 		String sql = "Select * From login Where username = ? And password = ?";
 		
 		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
@@ -43,7 +43,7 @@ public class LoginImpl implements LoginProfileDAO {
 			stmt.setString(2, password);
 			ResultSet result = stmt.executeQuery();
 			if(result.next()) {
-				LoginProfile profile = new LoginProfile();
+				Login profile = new Login();
 				profile.setUsername(result.getString("username"));
 				profile.setPassword(result.getString("password"));
 				profile.setAdministratorId(result.getInt("administrator_id"));
