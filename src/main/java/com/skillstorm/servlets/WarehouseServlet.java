@@ -74,7 +74,6 @@ public class WarehouseServlet extends HttpServlet{
 				break;
 			}
 		}
-		System.out.println("Ran the get");
 	}
 	
 	/**
@@ -88,7 +87,6 @@ public class WarehouseServlet extends HttpServlet{
 		warehouse = dao.create(warehouse);
 		resp.setContentType("application/json");
 		resp.getWriter().print(mapper.writeValueAsString(warehouse));
-		System.out.println("created a new warehouse /n " + warehouse);
 	}
 	
 	/**
@@ -103,7 +101,6 @@ public class WarehouseServlet extends HttpServlet{
 		warehouse = dao.update(warehouse);
 		resp.setContentType("application/json");
 		resp.getWriter().print(mapper.writeValueAsString(warehouse));
-		System.out.println("Put works");
 	}
 	
 	/**
@@ -116,7 +113,6 @@ public class WarehouseServlet extends HttpServlet{
 		if(paths.length > 1) {
 			dao.delete(Integer.parseInt(paths[1]));
 		}
-		System.out.println("deleted");
 	}
 		
 }

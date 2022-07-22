@@ -139,4 +139,61 @@ public class ItemImpl implements ItemDAO {
 		}
 		return null;
 	}
+
+	@Override
+	public int amountOfItemsInWarehouse(int id) {
+		String sql = "Select sum(amount) As total From items_in_warehouse Where warehouse_id = " + id;
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			Statement stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+			if(result.next()) {
+				return result.getInt("total");
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
+	@Override
+	public List<Item> findItemsInWarehouse(int id) {
+		LinkedList<Item> items = new LinkedList<>();
+		String sql = "Select item.item_id, item.name, item.description From item "
+				+ "Left Join items_in_warehouse on item.item_id = items_in_warehouse.item_id "
+				+ "Where warehouse_id = " + id;
+		
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			Statement stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+			while(result.next()) {
+				items.add(mapResultSet(result));
+			}
+			System.out.println("called");
+			return items;
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public int amountOfSpecificItemInWarehouse(int warehouseId, int itemId) {
+		String sql = "Select amount As total From items_in_warehouse Where warehouse_id = " + warehouseId +
+				" And item_id = " + itemId;
+				
+		try(Connection conn = ProjectDBCreds.getInstance().getConnection()){
+			Statement stmt = conn.createStatement();
+			ResultSet result = stmt.executeQuery(sql);
+			if(result.next()) {
+				return result.getInt("total");
+			}
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

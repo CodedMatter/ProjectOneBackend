@@ -21,4 +21,13 @@ public interface ItemDAO {
 	
 	// delete item by id
 	public void delete(int id);
+	
+	// get total amount of items in warehouse by id
+	public int amountOfItemsInWarehouse(int id);
+	
+	// get all the items in a warehouse by id
+	public List<Item> findItemsInWarehouse(int id);
+	
+	// gets the amount of an item that is in a warehouse
+	public int amountOfSpecificItemInWarehouse(int warehouseId, int itemId);
 }

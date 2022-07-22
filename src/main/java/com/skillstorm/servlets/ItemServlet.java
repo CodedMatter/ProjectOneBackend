@@ -27,7 +27,10 @@ public class ItemServlet extends HttpServlet{
 	 * /findAll gets all the items
 	 * /findById gets an item with that id
 	 * /findByName gets items with name that is similar
-	 * @return list of items or an item
+	 * /amountOfItemsInWarehouse get the total number of item in that warehouse
+	 * /findItemsInWarehouse get all items inside a warehouse
+	 * /amountOfSpecificItemInWarehouse
+	 * @return list of items or an item. can return int 
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -55,6 +58,21 @@ public class ItemServlet extends HttpServlet{
 				List<Item> items1 = dao.findByName(paths[2]);
 				resp.setContentType("application/json");
 				resp.getWriter().print(mapper.writeValueAsString(items1));
+				break;
+			case "amountOfItemsInWarehouse":
+				int totalAmount = dao.amountOfItemsInWarehouse(Integer.parseInt(paths[2]));
+				resp.setContentType("application/json");
+				resp.getWriter().print(mapper.writeValueAsString(totalAmount));
+				break;
+			case "findItemsInWarehouse":
+				List<Item> items11 = dao.findItemsInWarehouse(Integer.parseInt(paths[2]));
+				resp.setContentType("application/json");
+				resp.getWriter().print(mapper.writeValueAsString(items11));
+				break;
+			case "amountOfSpecificItemInWarehouse":
+				int amountOfItem = dao.amountOfSpecificItemInWarehouse(Integer.parseInt(paths[2]),Integer.parseInt(paths[3]));
+				resp.setContentType("application/json");
+				resp.getWriter().print(mapper.writeValueAsString(amountOfItem));
 				break;
 			}
 		}
