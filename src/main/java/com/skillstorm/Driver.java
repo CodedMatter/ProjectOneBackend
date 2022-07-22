@@ -7,17 +7,20 @@ import com.skillstorm.doas.EmployeeImpl;
 import com.skillstorm.doas.ItemDAO;
 import com.skillstorm.doas.ItemImpl;
 import com.skillstorm.doas.LoginImpl;
+import com.skillstorm.doas.WarehouseDAO;
+import com.skillstorm.doas.WarehouseImpl;
 import com.skillstorm.doas.LoginDAO;
 import com.skillstorm.models.Administrator;
 import com.skillstorm.models.Employee;
 import com.skillstorm.models.Item;
 import com.skillstorm.models.Login;
+import com.skillstorm.models.Warehouse;
 
 public class Driver {
 	
 	public static void main(String[] args) {
-		AdministratorDAO dao = new AdministratorImpl();
-		System.out.println(dao.findById(7));
+		WarehouseDAO dao = new WarehouseImpl();
+		System.out.println(dao.findById(4));
 		
 	}
 }

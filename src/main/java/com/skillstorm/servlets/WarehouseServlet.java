@@ -22,6 +22,24 @@ public class WarehouseServlet extends HttpServlet{
 	WarehouseDAO dao = new WarehouseImpl();
 	ObjectMapper mapper = new ObjectMapper();
 	
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+	}
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		super.service(req, resp);
+	}
+	
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		super.destroy();
+	}
+	
 	/**
 	 * /findAll gets all the warehouses
 	 * /findById gets a warehouse by id
@@ -55,8 +73,8 @@ public class WarehouseServlet extends HttpServlet{
 				resp.getWriter().print(mapper.writeValueAsString(warehouses1));
 				break;
 			}
-			
 		}
+		System.out.println("Ran the get");
 	}
 	
 	/**
@@ -70,6 +88,7 @@ public class WarehouseServlet extends HttpServlet{
 		warehouse = dao.create(warehouse);
 		resp.setContentType("application/json");
 		resp.getWriter().print(mapper.writeValueAsString(warehouse));
+		System.out.println("created a new warehouse /n " + warehouse);
 	}
 	
 	/**
@@ -84,6 +103,7 @@ public class WarehouseServlet extends HttpServlet{
 		warehouse = dao.update(warehouse);
 		resp.setContentType("application/json");
 		resp.getWriter().print(mapper.writeValueAsString(warehouse));
+		System.out.println("Put works");
 	}
 	
 	/**
@@ -96,6 +116,7 @@ public class WarehouseServlet extends HttpServlet{
 		if(paths.length > 1) {
 			dao.delete(Integer.parseInt(paths[1]));
 		}
+		System.out.println("deleted");
 	}
 		
 }
